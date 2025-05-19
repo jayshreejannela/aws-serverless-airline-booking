@@ -16,7 +16,7 @@ target:
 
 init: ##=> Install OS deps and dev tools
 	$(info [*] Bootstrapping CI system...)
-	#@$(MAKE) _install_os_packages
+	@$(MAKE) _install_os_packages
 
 deploy: ##=> Deploy services
 	$(info [*] Deploying...)
@@ -111,6 +111,12 @@ export.parameter:
 #############
 #  Helpers  #
 #############
+
+_install_os_packages:
+	$(info [*] Installing jq...)
+	#yum install jq -y
+	$(info [*] Upgrading Python SAM CLI and CloudFormation linter to the latest version...)
+	python3 -m pip install --upgrade --user cfn-lint aws-sam-cli
 
 
 define HELP_MESSAGE
